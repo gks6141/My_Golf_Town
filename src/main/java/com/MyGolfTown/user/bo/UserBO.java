@@ -1,0 +1,18 @@
+package com.MyGolfTown.user.bo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.MyGolfTown.user.domain.User;
+import com.MyGolfTown.user.mapper.UserMapper;
+
+@Service
+public class UserBO {
+
+	@Autowired
+	private UserMapper userMapper;
+	
+	public User getUser() {
+		return userMapper.selectUser();
+	}
+}
