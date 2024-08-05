@@ -1,22 +1,58 @@
 <!DOCTYPE html>
-<html>
 <html xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="headerFragment">
-    	<div class="h-100 d-flex align-items-center mx-4">
+    <div class="h-100 d-flex align-items-center mx-4">
+    	
+    	<div class="w-25 d-flex justify-content-center">
+    		<input type="text" id="researchText" class="form-control col-8 me-2">
+    		<button id="researchBTN" class="btn btn-outline-success col-4 mr-3" type="button">검색</button>
+    	</div>
+    	
 		<!-- 로고 영역 -->
-		<div class="h-100 d-flex justify-content-center">
-			<h1><a href="#" class="text-dark">나만의 골프 동네</a></h1>
+		<div class="w-50 d-flex justify-content-center">
+			<div>
+				<h1><a href="#" class="text-dark">나만의 골프 동네</a></h1>
+			</div>
 		</div>
 		
 		
 		<!-- 로그인 영역 -->
-		<!-- <div th:if="${session.userId != null}">
-			<span th:text="|${session.userName}님 안녕하세요!|"></span>
-			<a href="/user/sign-out">로그아웃</a>
-		</div> -->
-		<div th:unless="${session.userId != null}">
-			<a href="/user/sign-in-view">로그인</a>
+		<div class="w-25 d-flex justify-content-end">
+			<div th:if="${session.userId != null}">
+				<span th:text="|${session.userName}님 안녕하세요!|"></span>
+				<a href="/user/sign-out">로그아웃</a>
+			</div>
+			<div th:unless="${session.userId != null}">
+				<a href="/user/sign-in-view">로그인</a>
+			</div>
 		</div>
 	</div>
+	
+	<script>
+		$(document).ready(function(){
+			$("#researchBTN").on('click',function(){
+				let researchText = $("#researchText").val().trim();
+				
+				if(!reseachText){
+					alert("검색 단어를 입력해주세요");
+				}
+				
+				$.ajax({
+					method: 'get'
+					,url: "#"
+					,data:{"researchText": researchText}
+					,success:function(data){
+						if(data.code == 200){
+							//해당 상품 검색창
+						}
+					}
+					,error:function(e){
+						alert("에러 발생")
+					}
+				});
+			});
+		});
+	
+	</script>
 </header>
 </html>
