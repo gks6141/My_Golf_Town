@@ -15,13 +15,22 @@
 		</div>
 		
 		<div class="productBOX">
-			<img width="100%" height="100px" id="Advertising1" src="/image/golf2.jpg">
+			<img width="10%" height="100px" id="Advertising1" src="/image/golf2.jpg">
 		</div>
 	</div>
 </section>
 
 <th:block layout:fragment="script">
     <script>
-		
+    let bannerSrcArr = ['/image/golf1.jpg', '/image/golf2.jpg', '/image/golf3.jpg'];
+    let currentIndex = 0;
+    setInterval(function() {
+        $('#Advertising1').attr('src', bannerSrcArr[currentIndex]);
+        currentIndex++;
+
+        if (currentIndex > bannerSrcArr.length) { 
+            currentIndex = 0;
+        }
+    }, 3000);
     </script>
 </th:block>

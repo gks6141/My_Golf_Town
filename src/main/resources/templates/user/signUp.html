@@ -47,6 +47,13 @@
 			<span class="sign-up-subject">이메일</span>
 			<div class="m-3">
 				<input type="text" id="email" name="email" class="form-control col-6" placeholder="이메일을 입력하세요">
+				<button type="button" id="mailBtn" class="btn btn-success">이메일 전송</button>
+			</div>
+			
+			<span class="sign-up-subject">이메일 확인</span>
+			<div class="m-3">
+				<input type="text" id="emailcheck" name="emailcheck" class="form-control col-6" placeholder="이메일을 입력하세요">
+				<button type="button" id="mailCheckBtn" class="btn btn-success">이메일 확인</button>
 			</div>
 			
 			<br>
@@ -60,6 +67,27 @@
 <th:block layout:fragment="script">
     <script>
     $(document).ready(function(){
+    	
+    	$("#mailCheckBtn").on('click',function(){
+    		let email = $("#email").val().trim();
+    		$.ajax({
+    			method:'post'
+    			,url:"/api/mail/confirm"
+    			,data:{"email":email}
+    			,success:function(data){
+    				if(data.success == true){
+    					alert("성공")
+    				} else {
+    					alert("실패")
+    				}
+    			}
+    			,error:function(e){
+    				alert("에러 발생");
+    			}
+    		});
+    		
+    	});
+    	
     	
     	//중복확인
     	$("#loginIdCheckBtn").on('click',function(){
