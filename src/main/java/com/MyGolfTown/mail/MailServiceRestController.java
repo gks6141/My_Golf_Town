@@ -10,20 +10,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/mail")
+@RequestMapping("/api/mail")
 public class MailServiceRestController {
 
     @Autowired
     RegisterMail registerMail;
 
-    //127.0.0.1:8080/ROOT/api/mail/confirm.json?email
+    
     @PostMapping("/confirm")
-    public Map<String, Object> mailConfirm(@RequestParam("email") String email) throws Exception{
+    public Map<String, Object> mailConfirm(
+    		@RequestParam("email") String email) throws Exception{
+    	
         String code = registerMail.sendSimpleMessage(email);
         
         Map<String, Object> result = new HashMap<>();
+        
+        
         result.put("code", 200);
+        result.put("email_code", code);
         result.put("result", "성공");
+        
+        System.out.println(code);
+        
         return result;
     }
     

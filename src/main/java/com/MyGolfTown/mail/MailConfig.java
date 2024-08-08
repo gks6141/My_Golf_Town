@@ -2,6 +2,7 @@ package com.MyGolfTown.mail;
 
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,13 +11,20 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @Configuration
 public class MailConfig {
 	
+	
+	@Value("${spring.mail.password}")
+	private String password;
+	
+	@Value("${spring.mail.username}")
+	private String username;
+	
 	@Bean
     public JavaMailSender javaMailService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 
         javaMailSender.setHost("smtp.naver.com"); // 메인 도메인 서버 주소 => 정확히는 smtp 서버 주소
-        javaMailSender.setUsername(""); // 네이버 아이디
-        javaMailSender.setPassword(""); // 네이버 비밀번호
+        javaMailSender.setUsername(username); // 네이버 아이디
+        javaMailSender.setPassword(password); // 네이버 비밀번호
 
         javaMailSender.setPort(465); // 메일 인증서버 포트
 
