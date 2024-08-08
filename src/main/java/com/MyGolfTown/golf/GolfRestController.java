@@ -31,7 +31,7 @@ public class GolfRestController {
 		
 		Map<String, Object> result = new HashMap<>();
 		if(club.size() >0 ) {	
-			model.addAttribute("club", club);
+			model.addAttribute("clubs", club);
 			result.put("code", 200);
 			result.put("result", "성공");	
 		} else {
