@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<section layout:fragment="content" class="contents d-flex justify-content-center">
+	<div class="container w-100">
+		<div class="box w-100 d-flex align-items-center justify-content-center">
+			<!-- 상품이미지 -->
+			<div class="col-6 d-flex justify-content-center">
+				<img width="500px" src="/image/golf1.jpg">
+			</div>
+			<!-- 상품 구매 -->
+			<div class="col-6 d-flex justify-content-center">
+				<div>
+					<div><h1>제목</h1></div>
+					<div class="my-2"><h3>가격</h3></div>
+					<div class="my-4">
+						<select class="form-control text-center">
+							<option>상품</option>
+							<option>상품</option>
+						</select>
+					</div>
+					<div class="mb-4">
+						<select class="form-control text-center">
+							<option>상품</option>
+							<option>상품</option>
+						</select>
+					</div>
+					<div class="mb-4">
+						<select class="form-control text-center">
+							<option>상품</option>
+							<option>상품</option>
+						</select>
+					</div>
+					<div>
+						<button type="button" class="btn btn-info mx-3">장바구니</button>
+						<button type="button" class="btn btn-info ml-5" onclick="location.href='/product/order-view'">구매하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<hr>
+		<!-- 상품 설명 -->	
+		<div class="info_box w-100 d-flex align-items-center justify-content-center">
+			<button type="button" class="btn col-6">상품 상세 정보</button>
+			<button type="button" class="btn col-6">상품평</button>
+		</div>
+	
+	</div>
+</section>
+
+<th:block layout:fragment="script">
+    <script>
+
+    </script>
+</th:block>
