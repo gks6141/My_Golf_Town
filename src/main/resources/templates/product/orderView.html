@@ -42,17 +42,71 @@
 			<input type="text" id="phoneNumber" name="phoneNumber" class="form-control col-6" placeholder="전화번호를 입력하세요">
 		</div>
 		<article class="mt-5 ml-5">
-		<div class="d-flex mt-5 ml-5">
-			<button type="button" class="btn btn-info mt-5">무통장 입금</button>
-			<button type="button" class="btn btn-info ml-5 mt-5">카드 결제</button>
-		</div>
-		
+			<div class="d-flex ml-5 my-5">
+				<button type="button" class="no_card btn btn-info mt-5">무통장 입금</button>
+				<button type="button" class="btn btn-info ml-5 mt-5 has_card">카드 결제</button>
+			</div>
+			<div id="no_card" class="d-none">
+				<div class="d-flex justify-content-center">
+					<div class="w-25 text-center d-none d-flex justify-content-between">
+						<select id="selectBox">
+							<option>선택</option>
+							<option id="wori">우리</option>
+							<option id="sinhan">신한</option>
+							<option id="sinhan">기업</option>
+						</select>
+						<span class="wori d-none">000000-000-00</span>
+						<span class="sinhan d-none">1111-11-1110</span>
+						<span class="giup d-none">0222220-0220-020</span>
+					</div>
+				</div>
+			</div>
+			<div id="has_card" class="d-none">
+				<h1>카드 결제</h1>
+			</div>
+			
+			<div class="d-flex justify-content-end mt-5 pr-5">
+				<button id="payment_btn" type="button" class="btn btn-primary mr-5 d-none">결제 하기</button>
+			</div>
 		</article>
 	</div>
 </section>
 
 <th:block layout:fragment="script">
     <script>
+		$(document).ready(function(){
+			
+			$(".no_card").on('click', function(){
+				$("#no_card").removeClass("d-none");
+				$("#has_card").addClass("d-none");
+			});
+			
+			$(".has_card").on('click', function(){
+				$("#no_card").addClass("d-none");
+				$("#has_card").removeClass("d-none");
+				$("#payment_btn").removeClass("d-none");
+			});
+			
+			
+			$("#selectBox").on('change',function(){
+				$(".wori").addClass("d-none");
+				$(".sinhan").addClass("d-none");
+				$(".giup").addClass("d-none");
+				
+				let noCard = $("#selectBox").val();
 
+				if(noCard == "우리"){
+					$(".wori").removeClass("d-none");
+					$("#payment_btn").removeClass("d-none");
+				} else if(noCard == "신한"){
+					$(".sinhan").removeClass("d-none");
+					$("#payment_btn").removeClass("d-none");
+				} else {
+					$(".giup").removeClass("d-none");
+					$("#payment_btn").removeClass("d-none");
+				}
+			});
+			
+		});
     </script>
 </th:block>
