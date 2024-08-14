@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<section layout:fragment="content" class="contents d-flex justify-content-center">
+	<div class="sign-up-box">
+		<h1 class="m-4 font-weight-bold">정보 수정</h1>
+		<form id="signUpForm" method="post" action="/user/sign-up">
+			<span class="sign-up-subject">아이디</span>
+			<div class="d-flex ml-3 mt-3">
+				<span class="sign-up-subject" th:text="${user.loginId}" id="loginId"></span>
+			</div>
+			
+			<span class="sign-up-subject">비밀번호</span>
+			<div class="m-3">
+				<input type="password" id="password" name="password" class="form-control col-6" placeholder="비밀번호를 입력하세요">
+			</div>
+
+			<span class="sign-up-subject">비밀번호 확인</span>
+			<div class="m-3">
+				<input type="password" id="confirmPassword" name="confirmPassword" class="form-control col-6" placeholder="비밀번호를 입력하세요">
+			</div>
+
+			<span class="sign-up-subject">이름</span>
+			<div class="m-3">
+				<span class="sign-up-subject" th:text="${user.name}" id="name"></span>
+			</div>
+			
+			<span class="sign-up-subject">전화번호</span>
+			<div class="m-3">
+				<input type="text" id="phoneNumber" name="phoneNumber" class="form-control col-6" placeholder="전화번호를 입력하세요">
+			</div>
+			
+			<span class="sign-up-subject">주소</span>
+			<div class="m-3">
+				<input type="text" id="address" name="address" class="form-control col-6" placeholder="주소를 입력하세요">
+			</div>
+
+			<span class="sign-up-subject">이메일</span>
+			<div class="m-3">
+				<input type="text" id="email" name="email" class="form-control col-6" placeholder="이메일을 입력하세요">
+			</div>
+			
+			<br>
+			<div class="d-flex justify-content-center m-3">
+				<button type="submit" id="signUpBtn" class="btn btn-info">수정</button>
+			</div>
+		</form>
+	</div>
+</section>
+
+<th:block layout:fragment="script">
+    <script>
+ $(document).ready(function(){
+    	
+    	$("#mailCheckBtn").on('click',function(){
+    		$("#emconfirmchkfail").addClass("d-none");
+			$("#emconfirmchk").addClass("d-none");
+			
+    		let email = $("#email").val().trim();
+    		let mailcheck = $("#memailconfirm").val().trim();
+    		$.ajax({
+    			method:'post'
+    			,url:"/api/mail/confirm"
+    			,data:{"email":email}
+    			,success:function(data){
+    				alert("해당 이메일로 인증번호 발송이 완료되었습니다. \n 확인부탁드립니다.")
+    				console.log(data.email_code);
+    				chkEmailConfirm(data.email_code, mailcheck);
+    			}
+    			,error:function(e){
+    				alert("에러 발생");
+    			}
+    		});
+    		
+    	});
+    	
+    	
+    	$("#signUpForm").on('submit',function(e){
+    		e.preventDefault();
+    		
+    		let loginId = $("#loginId").val().trim();
+    		let password = $("#password").val().trim();
+    		let confirmPassword = $("#confirmPassword").val().trim();
+    		let name = $("#name").val().trim();
+    		let phoneNumber = $("#phoneNumber").val().trim();
+    		let address = $("#address").val().trim();
+    		let email = $("#email").val().trim();
+    		
+			
+    		if(!password || !confirmPassword){
+    			alert("비밀번호를 입력해주세요")
+ 				return false;
+    		}
+			
+    		if(password != confirmPassword){
+    			alert("비밀번호가 일치하지 않습니다.")
+ 				return false;
+    		}
+    		
+			
+			let url = $(this).attr('action');
+			console.log(url);
+			let params = $(this).serialize();
+			console.log(params);
+			
+			$.post(url,params) 
+			.done(function(data){ 
+				if (data.code == 200){
+					alert("수정이 완료되었습니다.")
+    				location.href="/user/sign-in-view";
+				} else {
+					alert(data.error_message);
+				}
+			});
+    	});
+	});
+    </script>
+</th:block>

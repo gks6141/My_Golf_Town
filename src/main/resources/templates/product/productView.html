@@ -48,26 +48,44 @@
 			<a class="product_star text-light col-6">상품평</a>
 		</div>
 		<div class="info_text w-100 text-center d-flex align-items-center justify-content-center pt-3">
-			<div id="infomation" class="d-none">
+			<div id="infomation">
 				<img width="90%" src="/image/golf1.jpg" alt="상품설명">
 				<div>dfgagdagdasgsagsg</div>
 			</div>
 			
-			<div id="review">
-					<div class="">
-						<a id="star1"><img width="30px" src="/image/star_empty.png"></a>
-						<a id="star2"><img width="30px" src="/image/star_empty.png"></a>
-						<a id="star3"><img width="30px" src="/image/star_empty.png"></a>
-						<a id="star4"><img width="30px" src="/image/star_empty.png"></a>
-						<a id="star5"><img width="30px" src="/image/star_empty.png"></a>
-					</div>
+			<div id="review" class="d-none">
+				<div class="d-flex align-items-center">
+					<ul class ="star_rating pr-2">
+					  <li class="star" id="1"></li>
+					  <li class="star" id="2"></li>
+					  <li class="star" id="3"></li>
+					  <li class="star" id="4"></li>
+					  <li class="star" id="5"></li>
+					</ul>
 					
-					<div class="point_box">
-						<span class="font-weight-bold">이정재</span>
-						<small class="text-secondary d-block my-2">yyyy년 M월 d일</small>
-						<div class="my-2">adfasfasf</div>
-						<small class="menu-box rounded p-1">드라이버</small>
+					<textarea class="star_box mr-2" placeholder="리뷰 내용을 작성해주세요." ></textarea>
 					
+					<button type="button" class="btn02">등록</button>
+					<button type="button" class="btn btn-info review-btn">rrrr</button>
+				</div>
+				
+				<hr>
+				<div>
+					<div class="review-comment-list"> 
+						<div class="review-comment d-flex justify-content-start align-content-center">
+								<span class="font-weight-bold">작성자</span>
+								<span class="review-comment-text pl-5">asdgdasgasgasgsadsagsadgadsfasfasfsafasfsafasfdasfsdafffffffffffffffffffffffffffffffffsdgdasgasgasgsadsagsadgadsfasfasfsafasfsafasfdasfsdafffffffffffffffffffffffffffffffffsdgdasgasgasgsadsagsadgadsfasfasfsafasfsafasfdasfsdafffffffffffffffffffffffffffffffffsdgdasgasgasgsadsagsadgadsfasfasfsafasfsafasfdasfsdafffffffffffffffffffffffffffffffff</span>
+								<a href="#" class="review-del-btn ml-5">
+									<img alt="취소" src="/image/x-icon.png" width="10" height="10">
+								</a>
+						</div>
+						<div class="review-comment d-flex justify-content-start align-content-center">
+								<span class="font-weight-bold">작성자</span>
+								<span class="review-comment-text pl-5">asdgdasgasgasgsadsagsadgadsfasfasfsafasfsafasfdasfsdafffffffffffffffffffffffffffffffffsdgdasgasgasgsadsagsadgadsfasfasfsafasfsafasfdasfsdafffffffffffffffffffffffffffffffffsdgdasgasgasgsadsagsadgadsfasfasfsafasfsafasfdasfsdafffffffffffffffffffffffffffffffffsdgdasgasgasgsadsagsadgadsfasfasfsafasfsafasfdasfsdafffffffffffffffffffffffffffffffff</span>
+								<a href="#" class="review-del-btn ml-5">
+									<img alt="취소" src="/image/x-icon.png" width="10" height="10">
+								</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -78,6 +96,19 @@
 <th:block layout:fragment="script">
     <script>
 		$(document).ready(function(){
+			$('.star_rating > .star').on('click',function() {
+				  $(this).parent().children('li').removeClass('on');
+				  $(this).addClass('on').prevAll('li').addClass('on');
+			});
+			
+			
+			$(".review-btn").on('click',function(){
+				for(let i = 1; i<=5; i++){
+					console.log($("#'${i}'").val())
+				}
+			});
+			
+			
 			
 			$(".product_info").on('click',function(){
 				$(".product_info").addClass("on");
@@ -85,6 +116,7 @@
 				$(".product_star").removeClass("on");
 				$(".product_star").addClass("text-light");
 				$("#infomation").removeClass("d-none");
+				$("#review").addClass("d-none");
 				
 			});
 			
@@ -94,6 +126,7 @@
 				$(".product_info").removeClass("on");
 				$(".product_info").addClass("text-light");
 				$("#infomation").addClass("d-none");
+				$("#review").removeClass("d-none");
 				
 			});
 			

@@ -74,3 +74,56 @@ footer {height:100px;}
 .text_color{
 		color:#fff;
 }
+
+
+
+.star_rating > .star {
+  width: 25px; 
+  height: 25px; 
+  margin-right: 10px;
+  display: inline-block; 
+  background: url('/image/star_empty.png') no-repeat; 
+  background-size: 100%; 
+  box-sizing: border-box; 
+}
+
+.star_rating .star.on {
+  width: 25px; 
+  height: 25px;
+  margin-right: 10px;
+  display: inline-block; 
+  background: url('/image/star_fill.png') no-repeat;
+  background-size: 100%; 
+  box-sizing: border-box; 
+}
+
+.star_box {
+	align-items: center;
+	width: 400px;
+	box-sizing: border-box;
+	display: inline-block;
+	background: #F3F4F8;
+	border: 0;
+	border-radius: 10px;
+	height: 50px;
+	resize: none;
+	font-size: 13px;
+	font-family: sans-serif;
+}
+.btn02 {
+	display:block;
+	width: 100px;
+	height: 50px;
+	font-weight: bold;
+	border: 0;
+	border-radius: 10px;
+	max-height: 50px;
+	font-size: 20px;
+	text-align: center;
+	background:bisque;
+}
+
+.review-comment-text {
+	width:600px;
+	word-break: break-all;
+}

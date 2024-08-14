@@ -1,6 +1,7 @@
 package com.MyGolfTown.review;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class ProductReviewRestController {
 	@GetMapping("review-select-productId")
 	public Map<String,Object> reviewSelectProductId(
 			@RequestParam("productId") int productId){
-		ProductReview review = productReviewBO.selectProductReviewByProductId(productId);
+		List<ProductReview> review = productReviewBO.selectProductReviewByProductId(productId);
 		Map<String, Object> result = new HashMap<>();
 		
 		if(review != null) {

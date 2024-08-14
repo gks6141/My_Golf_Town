@@ -1,5 +1,7 @@
 package com.MyGolfTown.review.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class ProductReviewBO {
 		productReviewMapper.insertProductReivew(userId, productId, reviewText, reviewScore);
 	}
 	
-	public ProductReview selectProductReviewByProductId(int productId) {
+	public List<ProductReview> selectProductReviewByProductId(int productId) {
 		return productReviewMapper.selectProductReviewByProductId(productId);
 		
 	}

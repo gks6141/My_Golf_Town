@@ -1,9 +1,13 @@
 package com.MyGolfTown.review.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.MyGolfTown.review.domain.ProductReview;
 
+@Mapper
 public interface ProductReviewMapper {
 
 	public void insertProductReivew(
@@ -12,5 +16,5 @@ public interface ProductReviewMapper {
 			@Param("productId") String reviewText,
 			@Param("reviewScore") int reviewScore);
 	
-	public ProductReview selectProductReviewByProductId(int productId);
+	public List<ProductReview> selectProductReviewByProductId(int productId);
 }

@@ -19,8 +19,15 @@
 		<!-- 로그인 영역 -->
 		<div class="w-25 d-flex justify-content-end">
 			<div th:if="${session.userId != null}">
-				<span th:text="|${session.userName}님 안녕하세요!|"></span>
-				<a href="/user/sign-out">로그아웃</a>
+				<div class="dropdown">
+				  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+				    <span th:text="|${session.userName}님|"></span>
+				  </button>
+				  <div class="dropdown-menu">
+				    <a class="dropdown-item" href="/user/update-view">내 정보 수정</a>
+				    <a class="dropdown-item" href="/user/sign-out">로그아웃</a>
+					</div>
+				</div>
 			</div>
 			<div th:unless="${session.userId != null}">
 				<a href="/user/sign-in-view">로그인</a>
