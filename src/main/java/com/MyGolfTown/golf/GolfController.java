@@ -4,13 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.MyGolfTown.aop.TimeTrace;
-
 @Controller
 @RequestMapping("/golf")
 public class GolfController {
 
-	@TimeTrace
 	@GetMapping("/main-view")
 	public String mainView() {
 		return "golf/mainView";
