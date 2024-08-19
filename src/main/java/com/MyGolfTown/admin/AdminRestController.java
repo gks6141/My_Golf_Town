@@ -59,4 +59,22 @@ public class AdminRestController {
 		
 		return result;
 	}
+	
+	
+	@PostMapping("/insert-product")
+	public Map<String, Object> insertEquipment(
+			@RequestParam(value = "equipmentId" , required = false) Integer equipmentId,
+			@RequestParam(value = "clubId" , required = false) Integer clubId,
+			@RequestParam("productSubject") String productSubject,
+			@RequestParam("productInformationText") String productInformationText,
+			@RequestParam("file") MultipartFile file){
+		
+		adminBO.addProduct(clubId, equipmentId, productSubject, productInformationText , file);
+		
+		Map<String,Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "성공");			
+		
+		return result;
+	}
 }

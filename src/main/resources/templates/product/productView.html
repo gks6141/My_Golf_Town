@@ -14,23 +14,17 @@
 			<div class="col-6 d-flex justify-content-center">
 				<div>
 					<div><h1 th:text="${product.productSubject}">제목</h1></div>
-					<div class="my-2"><h3 th:text="${club.clubName}">가격</h3></div>
+					<div class="my-2"><h3 th:text="|${club.clubPrice}원|">가격</h3></div>
 					<div class="my-4">
 						<select class="form-control text-center">
-							<option>상품</option>
-							<option>상품</option>
+							<option th:text="${club.clubName}">상품</option>
 						</select>
 					</div>
 					<div class="mb-4">
 						<select class="form-control text-center">
-							<option>상품</option>
-							<option>상품</option>
-						</select>
-					</div>
-					<div class="mb-4">
-						<select class="form-control text-center">
-							<option>상품</option>
-							<option>상품</option>
+							<th:block  th:each="oneclub: ${clubs}" >
+							<option th:text="${oneclub.clubSpecification}">상품</option>
+							</th:block>
 						</select>
 					</div>
 					<div>
@@ -50,23 +44,17 @@
 			<div class="col-6 d-flex justify-content-center">
 				<div>
 					<div><h1 th:text="${product.productSubject}">제목</h1></div>
-					<div class="my-2"><h3 th:text="${equipment.equipmentName}">가격</h3></div>
+					<div class="my-2"><h3 th:text="|${equipment.equipmentPrice}원|">가격</h3></div>
 					<div class="my-4">
 						<select class="form-control text-center">
-							<option>상품</option>
-							<option>상품</option>
+							<option th:text="${equipment.equipmentName}">상품</option>
 						</select>
 					</div>
 					<div class="mb-4">
 						<select class="form-control text-center">
-							<option>상품</option>
-							<option>상품</option>
-						</select>
-					</div>
-					<div class="mb-4">
-						<select class="form-control text-center">
-							<option>상품</option>
-							<option>상품</option>
+							<th:block  th:each="oneEquipment: ${equipments}" >
+							<option th:text="${oneEquipment.equipmentSpecification}">상품</option>
+							</th:block>
 						</select>
 					</div>
 					<div>

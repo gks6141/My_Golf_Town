@@ -53,4 +53,27 @@
  			,NOW()
  		) 
  	</insert>
+ 	
+ 	<insert id="insertProduct" parameterType="map">
+ 		INSERT INTO `product`
+ 		(
+			`clubId`
+			,`equipmentId`
+			,`productSubject`
+			,`productInformationText`
+			,`productInformationImagePath`
+			,`createdAt`
+			,`updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{clubId}
+ 			,#{equipmentId}
+ 			,#{productSubject}
+ 			,#{productInformationText}
+ 			,#{imagePath}
+ 			,NOW()
+ 			,NOW()
+ 		) 
+ 	</insert>
  </mapper>

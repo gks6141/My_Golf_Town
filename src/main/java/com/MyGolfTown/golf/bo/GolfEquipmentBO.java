@@ -21,4 +21,8 @@ public class GolfEquipmentBO {
 	public GolfEquipment getGolfEquipmentById(int Id){
 		return golfEquipmentMapper.selectGolfEquipmentById(Id);
 	}
+	
+	public List<GolfEquipment> getGolfEquipmentByName(String Name){
+		return golfEquipmentMapper.selectGolfEquipmentByName(Name);
+	}
 }

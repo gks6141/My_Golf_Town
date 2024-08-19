@@ -13,18 +13,17 @@
 			</select>
 		</div>
 		
-		<div class="m-3">
+		<div class="type m-3">
 			<select name="golfclub" id="golfclub" class="">
 				<th:block th:each="club: ${golfClubs}">
-					<option th:text="${club.clubName}" th:data-club-Id="${club.id}"></option>
+					<option th:text="${club.clubName}" th:value="${club.id}"></option>
 				</th:block>
 			</select>
 			<select name="golfEquipment" id="golfEquipment" class="d-none">
 				<th:block th:each="Equipment : ${golfEquipments}">
-					<option th:text="${Equipment.equipmentName}" th:data-equipment-Id="${Equipment.id}" ></option>
+					<option th:text="${Equipment.equipmentName}" th:value="${Equipment.id}" ></option>
 				</th:block>
 			</select>
-			
 		</div>
 
 		<span class="sign-up-subject">상품 제목</span>
@@ -106,25 +105,18 @@
 			$("#fileName").text(fileName);
 		});
 		
+		function club_or_equipment(club, equipment) {
+			  return width * height;
+		}
+		
 		$("#productCreateBtn").on('click',function(){
 			let golf= $("#golf").val();
-			
-			
-			if(golf == "clubId"){
-				let clubId = $("#golfclub").data("club-Id"); 
-				let equipmentId = 111;
-			} else {
-				let equipmentId = $("#golfEquipment").data("equipment-Id"); 
-				let clubId = 111;
-			}
-			
-			
 			let productSubject= $("#productSubject").val().trim();
 			let productInformationText= $("#productInformationText").val().trim();
 			let fileName = $("#file").val();
+			 
 			
-			/* console.log(clubId);
-			console.log(equipmentId); */
+			
 			
 			//유효성 검사 
 			if(fileName == ""){
@@ -133,18 +125,24 @@
 			}
 
 
-			/* let formData = new FormData();
-			formData.append("usedClub",usedClub);
-			formData.append("clubType",clubType);
-			formData.append("clubName",clubName);
+			let formData = new FormData();
+			formData.append("productSubject",productSubject);
+			formData.append("productInformationText",productInformationText);
 			formData.append("file",$("#file")[0].files[0]);
-			formData.append("clubSpecification",clubSpecification);
-			formData.append("clubCount",clubCount);
-			formData.append("clubPrice",clubPrice);
 			
-			$.ajax({
+			if(golf == "clubId"){
+				let clubId = $("#golfclub").val();
+				formData.append("clubId",clubId);
+			} else {
+				let equipmentId = $("#golfEquipment").val();
+				formData.append("equipmentId",equipmentId);
+			}
+			
+			console.log(formData)
+			
+		 	$.ajax({
 				method:"post"
-				,url:"/admin/insert-club"
+				,url:"/admin/insert-product"
 				,data:formData
 				,enctype:"multipart/form-data"
 				,processData:false
@@ -157,7 +155,9 @@
 				,error:function(e){
 					alert("에러 발생");
 				}
-			}) */
+			}) 
+			
+			
 		});
 		
 		

@@ -16,10 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 public class FileManagerService {
 
 	//저장 될 서버 경로
-//	public static final String FILE_UPLOAD_PATH = "D:\\한주형\\My_Golf_Town\\workspace\\images/";
+	public static final String FILE_UPLOAD_PATH = "D:\\한주형\\My_Golf_Town_project\\workspace\\images/";
 	
 	//집에서 사용되는 경로
-	public static final String FILE_UPLOAD_PATH = "C:\\한주형2\\My_Golf_Town\\workspace\\images/";
+//	public static final String FILE_UPLOAD_PATH = "C:\\한주형2\\My_Golf_Town\\workspace\\images/";
 	
 	//input : file, userLoginId
 	//output: String

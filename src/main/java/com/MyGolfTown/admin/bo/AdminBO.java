@@ -22,7 +22,6 @@ public class AdminBO {
 		
 		
 		imagePath =  fileManagerService.uploadFile(file, clubName);
-		System.out.println(imagePath);
 		adminMapper.insertGolfClub(usedClub, clubType, clubName, imagePath, clubSpecification, clubCount, clubPrice);
 	}
 	
@@ -32,8 +31,16 @@ public class AdminBO {
 		
 		
 		imagePath =  fileManagerService.uploadFile(file, equipmentName);
-		System.out.println(imagePath);
 		adminMapper.insertGolfEquipment(equipmentType, equipmentName, imagePath, equipmentSpecification, equipmentCount, equipmentPrice);
+	}
+	
+	public void addProduct(Integer clubId, Integer equipmentId, String productSubject, String productInformationText, MultipartFile file) {
+		
+		String imagePath = null;
+		
+		
+		imagePath =  fileManagerService.uploadFile(file, productSubject);
+		adminMapper.insertProduct(clubId, equipmentId, productSubject, productInformationText, imagePath);
 	}
 	
 }

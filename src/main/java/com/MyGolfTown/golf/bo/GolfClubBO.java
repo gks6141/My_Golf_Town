@@ -25,5 +25,9 @@ public class GolfClubBO {
 	public GolfClub getGolfClubById(int Id){
 		return golfClubMapper.selectGolfClubById(Id);
 	}
+	
+	public List<GolfClub> getGolfClubByName(String Name){
+		return golfClubMapper.selectGolfClubByName(Name);
+	}
 
 }

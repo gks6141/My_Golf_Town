@@ -38,7 +38,9 @@ public class AdminController {
 		
 		List<GolfClub> club = golfClubBO.getGolfClub();
 		List<GolfEquipment> equipment = golfEquipmentBO.getGolfEquipment();
-		
+		if(club == null || equipment == null) {
+			return "admin/noProduct";
+		}
 		model.addAttribute("golfClubs", club);
 		model.addAttribute("golfEquipments", equipment);
 		

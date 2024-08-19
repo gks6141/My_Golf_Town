@@ -7,6 +7,6 @@ import com.MyGolfTown.product.domain.Product;
 @Mapper
 public interface ProductMapper {
 
-	public Product selectProductId(int Id);
+	public Product selectProductById(int Id);
 	
 }

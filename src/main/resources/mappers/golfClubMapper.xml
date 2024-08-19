@@ -53,5 +53,21 @@
 		WHERE
 			`id` = #{id}
 	</select>
-	
+	<select id="selectGolfClubByName" resultType="com.MyGolfTown.golf.domain.GolfClub">
+		SELECT
+			`id`
+			,`usedClub`
+			,`clubType`
+			,`clubName`
+			,`clubImagePath`
+			,`clubSpecification`
+			,`clubCount`
+			,`clubPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`golfClub`
+		WHERE
+			`clubName` = #{clubName}
+	</select>
 </mapper>

@@ -13,6 +13,6 @@ public class ProductBO {
 	private ProductMapper productMapper;
 	
 	public Product getProductById(int Id){
-		return productMapper.selectProductId(Id);
+		return productMapper.selectProductById(Id);
 	}
 }

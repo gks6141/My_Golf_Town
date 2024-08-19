@@ -1,5 +1,7 @@
 package com.MyGolfTown.product;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.MyGolfTown.golf.bo.GolfClubBO;
 import com.MyGolfTown.golf.bo.GolfEquipmentBO;
+import com.MyGolfTown.golf.domain.GolfClub;
+import com.MyGolfTown.golf.domain.GolfEquipment;
 import com.MyGolfTown.product.bo.ProductBO;
 import com.MyGolfTown.product.domain.Product;
 
@@ -32,9 +36,15 @@ public class productController {
 		Product product = productBO.getProductById(Id);
 		
 		if(product.getClubId() == null) {
-			model.addAttribute("equipment", golfEquipmentBO.getGolfEquipmentById(product.getEquipmentId()));
+			GolfEquipment equipment = golfEquipmentBO.getGolfEquipmentById(product.getEquipmentId());
+			List<GolfEquipment> equipments = golfEquipmentBO.getGolfEquipmentByName((String)equipment.getEquipmentName());
+			model.addAttribute("equipment", equipment);
+			model.addAttribute("equipments", equipments);
 		} else {
-			model.addAttribute("club", golfClubBO.getGolfClubById(product.getClubId()));
+			GolfClub club = golfClubBO.getGolfClubById(product.getClubId());
+			List<GolfClub> clubs= golfClubBO.getGolfClubByName((String)club.getClubName());
+			model.addAttribute("club", club);
+			model.addAttribute("clubs", clubs);
 		}
 			
 		model.addAttribute("product", product);

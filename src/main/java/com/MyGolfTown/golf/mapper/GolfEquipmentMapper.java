@@ -12,4 +12,6 @@ public interface GolfEquipmentMapper {
 	public List<GolfEquipment> selectGolfEquipment();
 	
 	public GolfEquipment selectGolfEquipmentById(int Id);
+	
+	public List<GolfEquipment> selectGolfEquipmentByName(String Name);
 }

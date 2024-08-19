@@ -22,4 +22,12 @@ public interface AdminMapper {
 			@Param("equipmentSpecification") String equipmentSpecification,
 			@Param("equipmentCount") int equipmentCount,
 			@Param("equipmentPrice") int equipmentPrice);
+	
+	
+	public void insertProduct(
+			@Param("clubId") Integer clubId,
+			@Param("equipmentId") Integer equipmentId, 
+			@Param("productSubject") String productSubject, 
+			@Param("productInformationText") String productInformationText, 
+			@Param("imagePath") String imagePath);
 }
