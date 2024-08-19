@@ -9,8 +9,8 @@ import lombok.ToString;
 @Data
 public class Product {
 	private int id;
-	private int clubId;
-	private int equipmentId;
+	private Integer clubId;
+	private Integer equipmentId;
 	private String productSubject;
 	private String productInformationText;
 	private String productInformationImagePath;

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<section layout:fragment="content" class="contents d-flex justify-content-center">
+	<div class="sign-up-box ml-5">		
+		<span>용품 타입</span>
+		<div class="m-3">
+			<select name="equipmentType" id="equipmentType">
+				<option value="ball">골프공</option>
+				<option value="glove">골프 장갑</option>
+				<option value="bag">골프백</option>
+				<option value="hat">모자/벨트</option>
+				<option value="instrument">거리측정기</option>
+				<option value="others">기타</option>
+			</select>
+		</div>
+
+		<span class="sign-up-subject">용품 이름</span>
+		<div class="m-3">
+			<input type="text" id="equipmentName" name="equipmentName" class="form-control col-6" placeholder="이름을 입력하세요">
+		</div>
+		
+		<span class="sign-up-subject">용품 이미지</span>
+		<div class="m-3">
+			<div class="file-upload d-flex align-items-center">
+				<input type="file" id="file" class="d-none" accept=".jpg, .png, .gif">
+				
+				<a href="#" id="fileUploadBtn" class="btn btn-info">이미지 입력</a>
+				
+				<div id="fileName" class="ml-2"></div>
+			</div>
+		</div>
+		
+	<span class="sign-up-subject">용품 스펙</span>
+		<div class="m-3">
+			<input type="text" id="equipmentSpecification" name="equipmentSpecification" class="form-control col-6" placeholder="스펙을 입력하세요">
+		</div>
+
+		<span class="sign-up-subject">개수</span>
+		<div class="m-3">
+			<input type="text" id="equipmentCount" name="equipmentCount" class="form-control col-6" placeholder="개수를 입력하세요">
+		</div>
+		
+		<span class="sign-up-subject">가격</span>
+		<div class="m-3">
+			<input type="text" id="equipmentPrice" name="equipmentPrice" class="form-control col-6" placeholder="가격을 입력하세요">
+		</div>
+				
+		<br>
+		<div class="d-flex justify-content-center m-3">
+			<button id="productInsertBtn" class="btn btn-info">재고 입력</button>
+		</div>
+	</div>
+</section>
+
+<th:block layout:fragment="script">
+    <script>
+    $(document).ready(function(){
+    	$("#fileUploadBtn").on('click', function(e){
+			e.preventDefault(); // 위로 올라가는 현상 방지
+			// alert("클릭");
+			$("#file").click();
+		});
+		
+		//파일이 선택될 때 --> 유효성 체크 , 파일명 노출
+		$("#file").on('change', function(e){
+			//취소를 누를 때 처리(파일이 비워지므로 .name에서 에러 발생)
+			let file = e.target.files[0];
+			if (file == null ){
+				$("#file").val("");
+				$("#fileName").text("");
+				return;
+			}
+			
+			//alert("이미지 선택");
+			let fileName = e.target.files[0].name; // bord.jpg
+			console.log(fileName);
+			
+			//확장자 validation
+			let ext = fileName.split(".").pop().toLowerCase();
+			console.log(ext);
+			
+			if (ext != "gif" && ext != "png" && ext != "jpg") {
+				alert("이미지 파일만 업로드 할 수 있습니다.");
+				$("#file").val("");// 파일 태그에 올라온 것 제거(보이지 않지만 꼭! 처리)
+				$("#fileName").text(""); // 보여지고 있는 파일명 초기화
+				return;
+			}
+			
+			// 2. 파일명 노출
+			$("#fileName").text(fileName);
+		});
+		
+		$("#productInsertBtn").on('click',function(){
+			let equipmentType= $("#equipmentType").val().trim();
+			let equipmentName= $("#equipmentName").val().trim();
+			let fileName = $("#file").val();
+			let equipmentSpecification= $("#equipmentSpecification").val().trim();
+			let equipmentCount= $("#equipmentCount").val().trim();
+			let equipmentPrice= $("#equipmentPrice").val().trim();
+			
+			
+			//유효성 검사 
+			if(fileName == ""){
+				alert("사진을 입력해주세요.");
+				return ;
+			}
+
+
+			let formData = new FormData();
+			formData.append("equipmentType",equipmentType);
+			formData.append("equipmentName",equipmentName);
+			formData.append("file",$("#file")[0].files[0]);
+			formData.append("equipmentSpecification",equipmentSpecification);
+			formData.append("equipmentCount",equipmentCount);
+			formData.append("equipmentPrice",equipmentPrice);
+			
+			$.ajax({
+				method:"post"
+				,url:"/admin/insert-equipment"
+				,data:formData
+				,enctype:"multipart/form-data"
+				,processData:false
+				,contentType:false
+				,success:function(data){
+					if(data.code == 200){
+						alert("성공")
+					}
+				}
+				,error:function(e){
+					alert("에러 발생");
+				}
+			})
+		});
+    	
+    });
+    </script>
+</th:block>

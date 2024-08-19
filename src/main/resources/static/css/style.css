@@ -38,6 +38,16 @@ footer {height:100px;}
 	border:2px solid #000 ;
 }
 
+.clubBox{
+	min-height: 400px;
+	border:2px solid #000 ;
+}
+
+.equipmentBox{
+	min-height: 400px;
+	border:2px solid #000 ;
+}
+
 .info_box{
 	font-size:20px;
 	min-height: 10px;

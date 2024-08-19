@@ -8,7 +8,6 @@ import lombok.ToString;
 @ToString
 @Data
 public class GolfClub {
-
 	private int id;
 	private boolean usedClub;
 	private String clubType;

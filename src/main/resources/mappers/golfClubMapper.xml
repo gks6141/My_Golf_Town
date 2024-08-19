@@ -19,4 +19,39 @@
 		WHERE
 			`usedClub`=#{usedClub} AND `clubType` = #{clubType}
 	</select>
+	
+	<select id="selectGolfClub" resultType="com.MyGolfTown.golf.domain.GolfClub">
+		SELECT
+			`id`
+			,`usedClub`
+			,`clubType`
+			,`clubName`
+			,`clubImagePath`
+			,`clubSpecification`
+			,`clubCount`
+			,`clubPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`golfClub`
+	</select>
+	
+	<select id="selectGolfClubById" resultType="com.MyGolfTown.golf.domain.GolfClub">
+		SELECT
+			`id`
+			,`usedClub`
+			,`clubType`
+			,`clubName`
+			,`clubImagePath`
+			,`clubSpecification`
+			,`clubCount`
+			,`clubPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`golfClub`
+		WHERE
+			`id` = #{id}
+	</select>
+	
 </mapper>

@@ -5,39 +5,34 @@
       layout:decorate="~{layout/defaultLayout}">
 <section layout:fragment="content" class="contents d-flex justify-content-center">
 	<div class="sign-up-box ml-5">		
-		<span>클럽/용품</span>
+		<span>NEW/중고</span>
 		<div class="m-3">
-			<select name="golf" id="golf">
-				<option value="clubId">클럽</option>
-				<option value="equipmentId">용품</option>
+			<select name="usedClub" id="usedClub">
+				<option value=true>New</option>
+				<option value=false>중고</option>
 			</select>
-		</div>
-		
-		<div class="m-3">
-			<select name="golfclub" id="golfclub" class="">
-				<th:block th:each="club: ${golfClubs}">
-					<option th:text="${club.clubName}" th:data-club-Id="${club.id}"></option>
-				</th:block>
-			</select>
-			<select name="golfEquipment" id="golfEquipment" class="d-none">
-				<th:block th:each="Equipment : ${golfEquipments}">
-					<option th:text="${Equipment.equipmentName}" th:data-equipment-Id="${Equipment.id}" ></option>
-				</th:block>
-			</select>
-			
 		</div>
 
-		<span class="sign-up-subject">상품 제목</span>
+		<span>클럽 타입</span>
 		<div class="m-3">
-			<input type="text" id="productSubject" name="productSubject" class="form-control col-6" placeholder="이름을 입력하세요">
+			<select name="clubType" id="clubType">
+				<option value="diver">드라이버</option>
+				<option value="utilWood">유틸/우드</option>
+				<option value="iron">아이언</option>
+				<option value="wedge">웨 지</option>
+				<option value="putter">퍼 터</option>
+				<option value="womenClub">여성 클럽</option>
+				<option value="fullset">풀세트</option>
+				<option value="shaft">샤프트</option>
+			</select>
+		</div>
+
+		<span class="sign-up-subject">클럽 이름</span>
+		<div class="m-3">
+			<input type="text" id="clubName" name="clubName" class="form-control col-6" placeholder="이름을 입력하세요">
 		</div>
 		
-		<span class="sign-up-subject">상품 정보</span>
-		<div class="m-3">
-			<input type="text" id="productInformationText" name="productInformationText" class="form-control col-6" placeholder="스펙을 입력하세요">
-		</div>
-		
-		<span class="sign-up-subject">상품 정보 이미지</span>
+		<span class="sign-up-subject">클럽 이미지</span>
 		<div class="m-3">
 			<div class="file-upload d-flex align-items-center">
 				<input type="file" id="file" class="d-none" accept=".jpg, .png, .gif">
@@ -48,29 +43,31 @@
 			</div>
 		</div>
 		
-		<div class="d-flex justify-content-center m-3">
-			<button id="productCreateBtn" class="btn btn-info">상품 입력</button>
+	<span class="sign-up-subject">클럽 스펙</span>
+		<div class="m-3">
+			<input type="text" id="clubSpecification" name="clubSpecification" class="form-control col-6" placeholder="스펙을 입력하세요">
+		</div>
+
+		<span class="sign-up-subject">개수</span>
+		<div class="m-3">
+			<input type="text" id="clubCount" name="clubCount" class="form-control col-6" placeholder="개수를 입력하세요">
 		</div>
 		
+		<span class="sign-up-subject">가격</span>
+		<div class="m-3">
+			<input type="text" id="clubPrice" name="clubPrice" class="form-control col-6" placeholder="가격을 입력하세요">
+		</div>
+				
+		<br>
+		<div class="d-flex justify-content-center m-3">
+			<button id="productInsertBtn" class="btn btn-info">재고 입력</button>
+		</div>
 	</div>
 </section>
 
 <th:block layout:fragment="script">
     <script>
     $(document).ready(function(){
-    	
-    	$("#golf").on('change',function(){
-    		let golf = $(this).val();
-    		
-    		if(golf == "clubId"){
-    			$("#golfclub").removeClass("d-none");
-    			$("#golfEquipment").addClass("d-none");
-    		} else {
-    			$("#golfclub").addClass("d-none");
-    			$("#golfEquipment").removeClass("d-none");
-    		}
-    	});
-    	
     	$("#fileUploadBtn").on('click', function(e){
 			e.preventDefault(); // 위로 올라가는 현상 방지
 			// alert("클릭");
@@ -106,25 +103,21 @@
 			$("#fileName").text(fileName);
 		});
 		
-		$("#productCreateBtn").on('click',function(){
-			let golf= $("#golf").val();
-			
-			
-			if(golf == "clubId"){
-				let clubId = $("#golfclub").data("club-Id"); 
-				let equipmentId = 111;
-			} else {
-				let equipmentId = $("#golfEquipment").data("equipment-Id"); 
-				let clubId = 111;
-			}
-			
-			
-			let productSubject= $("#productSubject").val().trim();
-			let productInformationText= $("#productInformationText").val().trim();
+		$("#productInsertBtn").on('click',function(){
+			let usedClub= $("#usedClub").val().trim();
+			let clubType= $("#clubType").val().trim();
+			let clubName= $("#clubName").val().trim();
 			let fileName = $("#file").val();
+			let clubSpecification= $("#clubSpecification").val().trim();
+			let clubCount= $("#clubCount").val().trim();
+			let clubPrice= $("#clubPrice").val().trim();
 			
-			/* console.log(clubId);
-			console.log(equipmentId); */
+			console.log(usedClub);
+			console.log(clubType);
+			console.log(clubName);
+			console.log(clubSpecification);
+			console.log(clubCount);
+			console.log(clubPrice);
 			
 			//유효성 검사 
 			if(fileName == ""){
@@ -133,7 +126,7 @@
 			}
 
 
-			/* let formData = new FormData();
+			let formData = new FormData();
 			formData.append("usedClub",usedClub);
 			formData.append("clubType",clubType);
 			formData.append("clubName",clubName);
@@ -157,14 +150,9 @@
 				,error:function(e){
 					alert("에러 발생");
 				}
-			}) */
+			})
 		});
-		
-		
-		
-		
-		
+    	
     });
-
     </script>
 </th:block>

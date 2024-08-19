@@ -10,6 +10,10 @@ import com.MyGolfTown.golf.domain.GolfClub;
 @Mapper
 public interface GolfClubMapper {
 
+	public List<GolfClub> selectGolfClub();
+
+	public GolfClub selectGolfClubById(int Id);
+	
 	public List<GolfClub> selectGolfClubByUsedClubAndClubType(
 			@Param("usedClub") boolean usedClub, 
 			@Param("clubType") String clubType);

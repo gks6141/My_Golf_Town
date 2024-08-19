@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.MyGolfTown.golf.mapper.GolfEquipmentMapper">
+	<select id="selectGolfEquipment" resultType="com.MyGolfTown.golf.domain.GolfEquipment">
+		SELECT
+			`id`
+			,`equipmentType`
+			,`equipmentName`
+			,`equipmentImagePath`
+			,`equipmentSpecification`
+			,`equipmentCount`
+			,`equipmentPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`golfEquipment`
+	</select>
+	
+	<select id="selectGolfEquipmentById" resultType="com.MyGolfTown.golf.domain.GolfEquipment">
+		SELECT
+			`id`
+			,`equipmentType`
+			,`equipmentName`
+			,`equipmentImagePath`
+			,`equipmentSpecification`
+			,`equipmentCount`
+			,`equipmentPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`golfEquipment`
+		WHERE
+			`id` = #{id}
+	</select>
+	
+</mapper>

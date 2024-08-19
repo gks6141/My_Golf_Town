@@ -24,7 +24,7 @@ public class GolfController {
 		return "golf/ironView";
 	}
 	
-	@GetMapping("/util-woodView-view")
+	@GetMapping("/util-wood-view")
 	public String utilWoodView() {
 		return "golf/utilWoodView";
 	}

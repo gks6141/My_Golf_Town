@@ -13,10 +13,17 @@ public class GolfClubBO {
 	
 	@Autowired
 	private GolfClubMapper golfClubMapper;
+
+	public List<GolfClub> getGolfClub(){
+		return golfClubMapper.selectGolfClub();
+	}
 	
 	public List<GolfClub> getGolfClubByUsedClubAndClubType(boolean usedClub, String clubType){
 		return golfClubMapper.selectGolfClubByUsedClubAndClubType(usedClub, clubType);
-		
+	}
+	
+	public GolfClub getGolfClubById(int Id){
+		return golfClubMapper.selectGolfClubById(Id);
 	}
 
 }

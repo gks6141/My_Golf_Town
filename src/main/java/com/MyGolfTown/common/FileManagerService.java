@@ -16,16 +16,16 @@ import lombok.extern.slf4j.Slf4j;
 public class FileManagerService {
 
 	//저장 될 서버 경로
-	public static final String FILE_UPLOAD_PATH = "D:\\한주형\\MyGolfTown\\workspace\\images/";
+//	public static final String FILE_UPLOAD_PATH = "D:\\한주형\\My_Golf_Town\\workspace\\images/";
 	
 	//집에서 사용되는 경로
-//	public static final String FILE_UPLOAD_PATH = "C:\\한주형2\\MyGolfTown\\workspace\\images/";
+	public static final String FILE_UPLOAD_PATH = "C:\\한주형2\\My_Golf_Town\\workspace\\images/";
 	
 	//input : file, userLoginId
 	//output: String
 	
-	public String uploadFile(MultipartFile file, String loginId){
-		String directoryName= loginId + "_" + System.currentTimeMillis();
+	public String uploadFile(MultipartFile file, String golfName){
+		String directoryName= golfName + "_" + System.currentTimeMillis();
 		
 		String filePath = FILE_UPLOAD_PATH + directoryName + "/";
 		
