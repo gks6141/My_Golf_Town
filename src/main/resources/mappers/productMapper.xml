@@ -17,5 +17,20 @@
 		WHERE
 			`id` = #{id}
  	</select>
+ 	<select id="selectProductByClubId" resultType="com.MyGolfTown.product.domain.Product">
+	 	SELECT
+	 		`id`
+			,`clubId`
+			,`equipmentId`
+			,`productSubject`
+			,`productInformationText`
+			,`productInformationImagePath`
+			,`createdAt`
+			,`updatedAt`	
+		FROM
+			`product`
+		WHERE
+			`clubId` = #{clubId}
+ 	</select>
  	
  </mapper>

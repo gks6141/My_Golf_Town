@@ -19,4 +19,7 @@ public interface GolfClubMapper {
 	public List<GolfClub> selectGolfClubByUsedClubAndClubType(
 			@Param("usedClub") boolean usedClub, 
 			@Param("clubType") String clubType);
+	
+	
+	
 }

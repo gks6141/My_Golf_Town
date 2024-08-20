@@ -1,5 +1,7 @@
 package com.MyGolfTown.product.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class ProductBO {
 	
 	public Product getProductById(int Id){
 		return productMapper.selectProductById(Id);
+	}
+	
+	public List<Product> getProductByClubId(int clubId){
+		return productMapper.selectProductByClubId(clubId);
 	}
 }

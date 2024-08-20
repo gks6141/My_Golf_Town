@@ -1,20 +1,39 @@
 package com.MyGolfTown.golf;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.MyGolfTown.golf.bo.GolfClubBO;
+import com.MyGolfTown.golf.domain.GolfClub;
+import com.MyGolfTown.product.bo.ProductBO;
+import com.MyGolfTown.product.domain.Product;
 
 @Controller
 @RequestMapping("/golf")
 public class GolfController {
 
+	@Autowired
+	private GolfClubBO golfClubBO;
+	
+	@Autowired
+	private ProductBO productBO;
+	
 	@GetMapping("/main-view")
 	public String mainView() {
 		return "golf/mainView";
 	}
-	
+	 
 	@GetMapping("/driver-view")
-	public String driverView() {
+	public String driverView(Model model) {
+		List<GolfClub> golfClubs = golfClubBO.getGolfClubByUsedClubAndClubType(true, "diver");
+
+		model.addAttribute("clubs",golfClubs);
 		return "golf/driverView";
 	}
 	
