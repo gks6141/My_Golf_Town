@@ -31,9 +31,10 @@ public class GolfController {
 	 
 	@GetMapping("/driver-view")
 	public String driverView(Model model) {
-		List<GolfClub> golfClubs = golfClubBO.getGolfClubByUsedClubAndClubType(true, "diver");
-
-		model.addAttribute("clubs",golfClubs);
+		List<Product> products = productBO.getGolfClubProductByUsedClubAndClubType(true, "diver");
+//		List<GolfClub> golfClubs = golfClubBO.getGolfClubByUsedClubAndClubType(true, "diver");
+		model.addAttribute("products",products);
+//		model.addAttribute("clubs",golfClubs);
 		return "golf/driverView";
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.MyGolfTown.golf.domain.GolfClub;
 import com.MyGolfTown.product.domain.Product;
 import com.MyGolfTown.product.mapper.ProductMapper;
 
@@ -20,5 +21,9 @@ public class ProductBO {
 	
 	public List<Product> getProductByClubId(int clubId){
 		return productMapper.selectProductByClubId(clubId);
+	}
+	
+	public List<Product> getGolfClubProductByUsedClubAndClubType(boolean usedClub, String clubType){
+		return productMapper.selectGolfClubProductByUsedClubAndClubType(usedClub, clubType);
 	}
 }

@@ -32,5 +32,17 @@
 		WHERE
 			`clubId` = #{clubId}
  	</select>
+ 	<select id="selectGolfClubProductByUsedClubAndClubType" resultType="com.MyGolfTown.product.domain.Product">
+		SELECT
+			A.* , B.*
+		FROM
+			`product` AS A
+		INNER JOIN 
+			 `golfClub`AS B
+		ON
+			A.clubId = B.id
+		WHERE
+			B.usedClub= #{usedClub} AND B.clubType=#{clubType}
+	</select>
  	
  </mapper>

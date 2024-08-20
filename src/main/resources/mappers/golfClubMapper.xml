@@ -70,16 +70,7 @@
 		WHERE
 			`clubName` = #{clubName}
 	</select>
-<!-- 	<select id="selectGolfClubProductByUsedClubAndClubType" resultType="com.MyGolfTown.golf.domain.GolfClub">
-		SELECT
-			A.*, B.*
-		FROM
-			`golfClub`
-		JOIN
-			`product`
-		WHERE
-			A.usedClub= #{usedClub} AND A.clubType=#{clubType}
-	</select> -->
+
 	
 	
 </mapper>

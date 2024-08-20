@@ -14,7 +14,7 @@
 		        <a class="product_subject" href="/product/product-view?productId=1">
 		              <img class="product_img" src="/image/golf1.jpg" alt="상품">
 		              <div class="font-weight-bold">드라이버</div>
-		              <div th:text="|{club.clubPrice}원|">55,000원</div>
+		              <div >55,000원</div>
 		        </a>
 		    </div>
 		</div>
@@ -24,28 +24,14 @@
 		</div>
 		
 		
-		<!-- test -->
-		<div  th:each="club : ${clubs}">
-			<div th:text="${club.id}"></div>
-		</div>
-		<div  th:each="product : ${products}">
-			<div th:text="${product.id}"></div>
-		</div>
-		
-		
-		
-		
-		
-		<div class="productBOX row row-cols-5">
-			<div class="col">
-		        <th:block th:each="product : ${products}">
-			        <a class="product_subject" th:href="|/product/product-view?productId=${product.id}|">
-			              <img class="product_img" th:src="${club.clubImagePath}" alt="상품">
-			              <div class="font-weight-bold">드라이버</div>
-			              <div th:text="|{club.clubPrice}원|">55,000원</div>
+		<div class="productBOX row row-cols-5" th:each="products : ${productList}">
+				<div class="col">
+			        <a class="product_subject" th:href="|/product/product-view?productId=${products.product.id}|">
+			            <!--   <img class="product_img" src="${products.club.clubImagePath}" alt="상품">
+			              <div class="font-weight-bold" th:text="${products.product.productSubject}">드라이버</div>
+			              <div th:text="${products.club.clubPrice}">55,000원</div> -->
 			        </a>
-		        </th:block>
-		    </div>
+		    	</div>
 		</div>
 	</div>
 </section>
