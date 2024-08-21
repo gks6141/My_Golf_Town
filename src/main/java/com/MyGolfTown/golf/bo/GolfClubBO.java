@@ -18,6 +18,11 @@ public class GolfClubBO {
 		return golfClubMapper.selectGolfClub();
 	}
 	
+	public GolfClub getGolfClubByIdUsedClubClubType(int id, boolean usedClub, String clubType) {
+		return golfClubMapper.selectGolfClubByIdUsedClubClubType(id, usedClub, clubType);
+	}
+	
+	
 	public List<GolfClub> getGolfClubByUsedClubAndClubType(boolean usedClub, String clubType){
 		return golfClubMapper.selectGolfClubByUsedClubAndClubType(usedClub, clubType);
 	}

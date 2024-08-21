@@ -20,6 +20,9 @@ public interface GolfClubMapper {
 			@Param("usedClub") boolean usedClub, 
 			@Param("clubType") String clubType);
 	
-	
+	public GolfClub selectGolfClubByIdUsedClubClubType(
+			@Param("id") int id,
+			@Param("usedClub") boolean usedClub,
+			@Param("clubType") String clubType);
 	
 }

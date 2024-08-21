@@ -35,6 +35,23 @@
 			`id` = #{id}
 	</select>
 	
+	<select id="selectGolfEquipmentByIdEquipmentType" resultType="com.MyGolfTown.golf.domain.GolfEquipment">
+		SELECT
+			`id`
+			,`equipmentType`
+			,`equipmentName`
+			,`equipmentImagePath`
+			,`equipmentSpecification`
+			,`equipmentCount`
+			,`equipmentPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`golfEquipment`
+		WHERE
+			`id` = #{id} AND `equipmentType` =#{equipmentType}
+	</select>
+	
 	<select id="selectGolfEquipmentByName" resultType="com.MyGolfTown.golf.domain.GolfEquipment">
 		SELECT
 			`id`

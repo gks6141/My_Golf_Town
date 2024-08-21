@@ -10,10 +10,13 @@ import com.MyGolfTown.product.domain.Product;
 @Mapper
 public interface ProductMapper {
 
+	public List<Product> selectProduct();
+
 	public Product selectProductById(int Id);
 	
 	public List<Product> selectProductByClubId(int clubId);
-	
+
+	public List<Product> selectProductByEquipmentId(int equipmentId);
 	
 	public List<Product> selectGolfClubProductByUsedClubAndClubType(
 			@Param("usedClub") boolean usedClub, 

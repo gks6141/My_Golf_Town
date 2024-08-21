@@ -1,4 +1,4 @@
-package com.MyGolfTown.productist.domain;
+package com.MyGolfTown.productlist.domain;
 
 import com.MyGolfTown.golf.domain.GolfClub;
 import com.MyGolfTown.golf.domain.GolfEquipment;

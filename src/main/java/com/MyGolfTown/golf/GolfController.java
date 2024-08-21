@@ -29,50 +29,50 @@ public class GolfController {
 		return "golf/mainView";
 	}
 	 
-	@GetMapping("/driver-view")
-	public String driverView(Model model) {
-		List<Product> products = productBO.getGolfClubProductByUsedClubAndClubType(true, "diver");
-//		List<GolfClub> golfClubs = golfClubBO.getGolfClubByUsedClubAndClubType(true, "diver");
-		model.addAttribute("products",products);
-//		model.addAttribute("clubs",golfClubs);
-		return "golf/driverView";
-	}
-	
-	
-	@GetMapping("/iron-view")
-	public String ironView() {
-		return "golf/ironView";
-	}
-	
-	@GetMapping("/util-wood-view")
-	public String utilWoodView() {
-		return "golf/utilWoodView";
-	}
-	
-	@GetMapping("/wedge-view")
-	public String wedgeView() {
-		return "golf/wedgeView";
-	}
-	
-	@GetMapping("/putter-view")
-	public String putterView() {
-		return "golf/putterView";
-	}
-	
-	@GetMapping("/women-club-view")
-	public String womenClubView() {
-		return "golf/womenClubView";
-	}
-	
-	@GetMapping("/fullset-view")
-	public String fullsetView() {
-		return "golf/fullsetView";
-	}
-	
-	@GetMapping("/shaft-view")
-	public String shaftView() {
-		return "golf/shaftView";
-	}
-	
+//	@GetMapping("/driver-view")
+//	public String driverView(Model model) {
+//		List<Product> products = productBO.getGolfClubProductByUsedClubAndClubType(true, "diver");
+////		List<GolfClub> golfClubs = golfClubBO.getGolfClubByUsedClubAndClubType(true, "diver");
+//		model.addAttribute("products",products);
+////		model.addAttribute("clubs",golfClubs);
+//		return "golf/driverView";
+//	}
+//	
+//	
+//	@GetMapping("/iron-view")
+//	public String ironView() {
+//		return "golf/ironView";
+//	}
+//	
+//	@GetMapping("/util-wood-view")
+//	public String utilWoodView() {
+//		return "golf/utilWoodView";
+//	}
+//	
+//	@GetMapping("/wedge-view")
+//	public String wedgeView() {
+//		return "golf/wedgeView";
+//	}
+//	
+//	@GetMapping("/putter-view")
+//	public String putterView() {
+//		return "golf/putterView";
+//	}
+//	
+//	@GetMapping("/women-club-view")
+//	public String womenClubView() {
+//		return "golf/womenClubView";
+//	}
+//	
+//	@GetMapping("/fullset-view")
+//	public String fullsetView() {
+//		return "golf/fullsetView";
+//	}
+//	
+//	@GetMapping("/shaft-view")
+//	public String shaftView() {
+//		return "golf/shaftView";
+//	}
+//	
 	
 }

@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.MyGolfTown.product.mapper.ProductMapper">
+	 <select id="selectProduct" resultType="com.MyGolfTown.product.domain.Product">
+	 	SELECT
+	 		`id`
+			,`clubId`
+			,`equipmentId`
+			,`productSubject`
+			,`productInformationText`
+			,`productInformationImagePath`
+			,`createdAt`
+			,`updatedAt`	
+		FROM
+			`product`
+ 	</select>
+ 	
  	<select id="selectProductById" resultType="com.MyGolfTown.product.domain.Product">
 	 	SELECT
 	 		`id`
@@ -17,6 +31,7 @@
 		WHERE
 			`id` = #{id}
  	</select>
+ 	
  	<select id="selectProductByClubId" resultType="com.MyGolfTown.product.domain.Product">
 	 	SELECT
 	 		`id`
@@ -32,6 +47,23 @@
 		WHERE
 			`clubId` = #{clubId}
  	</select>
+ 	
+  	<select id="selectProductByEquipmentId" resultType="com.MyGolfTown.product.domain.Product">
+	 	SELECT
+	 		`id`
+			,`clubId`
+			,`equipmentId`
+			,`productSubject`
+			,`productInformationText`
+			,`productInformationImagePath`
+			,`createdAt`
+			,`updatedAt`	
+		FROM
+			`product`
+		WHERE
+			`equipmentId` = #{equipmentId}
+ 	</select>
+ 	
  	<select id="selectGolfClubProductByUsedClubAndClubType" resultType="com.MyGolfTown.product.domain.Product">
 		SELECT
 			A.* , B.*

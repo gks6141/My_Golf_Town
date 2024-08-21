@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<section layout:fragment="content" class="contents d-flex justify-content-center">
+	<div class="w-100">
+		<div class="d-flex p-3">
+			<span class="title_box">베스트 상품</span>
+		</div>
+		<div class="productBOX row row-cols-5">
+			<div class="col">
+		        <a class="product_subject" href="#">
+		              <img class="product_img" src="/image/golf1.jpg" alt="상품">
+		              <div class="font-weight-bold">드라이버</div>
+		              <div>55,000원</div>
+		        </a>
+		    </div>
+		</div>
+		
+		<div class="d-flex p-3">
+			<span class="title_box">웨 지</span>
+		</div>
+		
+		<div class="productBOX row row-cols-5">
+			<div class="col"  th:each="products : ${productList}">
+		        <a class="product_subject" th:href="|/product/product-view?productId=${products.Product.id}|">
+		    		<img class="product_img" th:src="${products.GolfClub.clubImagePath}" alt="상품">
+		            <div class="font-weight-bold" th:text="${products.Product.productSubject}">드라이버</div>
+		            <div th:text="${products.GolfClub.clubPrice}">55,000원</div>
+		        </a>
+	    	</div>
+		</div>
+	</div>
+</section>
+
+<th:block layout:fragment="script">
+    <script>
+
+    </script>
+</th:block>

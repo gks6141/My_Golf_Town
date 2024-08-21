@@ -1,4 +1,4 @@
-package com.MyGolfTown.productist;
+package com.MyGolfTown.productlist;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.MyGolfTown.productist.bo.ProductListBO;
-import com.MyGolfTown.productist.domain.ProductList;
+import com.MyGolfTown.productlist.bo.ProductListBO;
+import com.MyGolfTown.productlist.domain.ProductList;
 
 @Controller
 public class ProductListController {
@@ -23,8 +23,18 @@ public class ProductListController {
 			@PathVariable("clubType") String clubType) {
 		boolean used = Boolean.parseBoolean(usedClub);
 		List<ProductList> productList =  productListBO.generateProductList(used, clubType);
+		
 		model.addAttribute("productList", productList);
-		return "golf/"+ clubType + "View"; 
+		return "golf/"+usedClub+"club/"+ clubType + "View"; 
+	}
+	
+	@GetMapping("/{equipmentType}-view")
+	public String driverView(Model model,
+			@PathVariable("equipmentType") String equipmentType) {
+		List<ProductList> productList =  productListBO.generateProductListEquipment(equipmentType);
+		
+		model.addAttribute("productList", productList);
+		return "golf/equipment/"+ equipmentType + "View"; 
 	}
 	
 }
