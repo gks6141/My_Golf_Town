@@ -69,9 +69,10 @@ public class UserRestController {
 			,@RequestParam("name") String name
 			,@RequestParam("phoneNumber") String phoneNumber
 			,@RequestParam("address") String address
-			,@RequestParam("email") String email){		
+			,@RequestParam("email") String email
+			,@RequestParam(value = "authId" ,required = false) String authId){		
 		
-		UserEntity user = userBO.addUserEntity(loginId, password, name, phoneNumber, address, email);
+		UserEntity user = userBO.addUserEntity(loginId, password, name, phoneNumber, address, email, authId);
 		
 		Map<String, Object> result = new HashMap<>();
 		if(user != null) {

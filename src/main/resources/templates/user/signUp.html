@@ -31,7 +31,8 @@
 
 			<span class="sign-up-subject">이름</span>
 			<div class="m-3">
-				<input type="text" id="name" name="name" class="form-control col-6" placeholder="이름을 입력하세요">
+				<input th:if="${userInfo == null}" type="text" name="name" class="name1 form-control col-6" placeholder="이름을 입력하세요">
+				<span th:if="${userInfo != null}" th:text="${userInfo.getKakaoAccount().getProfile().getNickName()}" class="name2"></span>
 			</div>
 			
 			<span class="sign-up-subject">전화번호</span>
@@ -58,6 +59,9 @@
 				<div id="emconfirmchkfail" class="small text-danger d-none">인증번호가 잘못되었습니다</div>
 				<div id="emconfirmchk" class="small text-success d-none">인증번호 확인 완료</div>
 			</div>
+			
+			<span th:if="${userInfo != null}" th:text="${userInfo.getId()}" id="authId" class="d-none"></span>
+			<span th:if="${userInfo == null}" id="authId" class="d-none">null</span>
 			
 			<br>
 			<div class="d-flex justify-content-center m-3">
@@ -143,10 +147,21 @@
     		let loginId = $("#loginId").val().trim();
     		let password = $("#password").val().trim();
     		let confirmPassword = $("#confirmPassword").val().trim();
-    		let name = $("#name").val().trim();
+    		let name = null;
+			let name1 = $(".name1").val();
+    		let name2 = $(".name2").val();
+    		if(!name1){
+				name = name2;
+    		} else {
+    			name = name1;
+    		}
     		let phoneNumber = $("#phoneNumber").val().trim();
     		let address = $("#address").val().trim();
     		let email = $("#email").val().trim();
+    		let authId = $("#authId").val().trim();
+    		
+    		console.log(name);
+    		console.log(authId);
     		
     		if(!loginId){
 				alert("아이디를 입력하세요");

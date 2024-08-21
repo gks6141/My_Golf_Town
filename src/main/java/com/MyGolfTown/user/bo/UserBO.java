@@ -22,8 +22,12 @@ public class UserBO {
 		return userRepository.findByLoginId(loginId);
 	}
 	
+	public UserEntity getUserEntityByAuthId(String authId) {
+		return userRepository.findByAuthId(authId);
+	}
+	
 	public UserEntity addUserEntity(String loginId,
-			String password, String name, String phoneNumber, String address, String email) {
+			String password, String name, String phoneNumber, String address, String email, String authId) {
 		
 		password = SHA256.encode(password);
 		
@@ -34,6 +38,7 @@ public class UserBO {
 									.phoneNumber(phoneNumber)
 									.address(address)
 									.email(email)
+									.authId(authId)
 									.admin(false).build());
 	}
 	

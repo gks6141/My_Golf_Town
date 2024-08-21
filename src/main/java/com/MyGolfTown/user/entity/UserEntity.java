@@ -46,6 +46,9 @@ public class UserEntity {
 	
 	private boolean admin;
 	
+	@Column(name = "authId")
+	private String authId;
+	
 	@CreationTimestamp
 	@Column(name = "createdAt")
 	private LocalDateTime createdAt;
