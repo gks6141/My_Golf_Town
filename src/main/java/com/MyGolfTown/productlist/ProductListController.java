@@ -33,6 +33,7 @@ public class ProductListController {
 			@PathVariable("equipmentType") String equipmentType) {
 		List<ProductList> productList =  productListBO.generateProductListEquipment(equipmentType);
 		
+		
 		model.addAttribute("productList", productList);
 		return "golf/equipment/"+ equipmentType + "View"; 
 	}

@@ -29,7 +29,7 @@
 					</div>
 					<div>
 						<button type="button" class="btn btn-info mx-3">장바구니</button>
-						<button type="button" class="btn btn-info ml-5" onclick="location.href='/product/order-view'">구매하기</button>
+						<button type="button" class="btn btn-info ml-5" th:onclick="|location.href='/product/order-view?productId=${product.id}'|">구매하기</button>
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 					</div>
 					<div>
 						<button type="button" class="btn btn-info mx-3">장바구니</button>
-						<button type="button" class="btn btn-info ml-5" onclick="location.href='/product/order-view'">구매하기</button>
+						<button type="button" class="btn btn-info ml-5" th:onclick="|location.href='/product/order-view?productId=${product.id}'|">구매하기</button>
 					</div>
 				</div>
 			</div>

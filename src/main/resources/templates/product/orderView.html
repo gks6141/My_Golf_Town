@@ -15,34 +15,42 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><img width="100px" src="/image/golf1.jpg"></td>
-						<td>adsfasfdasfadsfasf</td>
-						<td>19000원</td>
+					<tr th:if="${club != null}">
+						<td><img width="100px" th:src="${club.clubImagePath}"></td>
+						<td th:text="${product.productSubject}">adsfasfdasfadsfasf</td>
+						<td th:text="|${club.clubPrice}원|">19000원</td>
+					</tr>
+					<tr th:if="${equipment != null}">
+						<td><img width="100px" th:src="${equipment.equipmentImagePath}"></td>
+						<td th:text="${product.productSubject}">adsfasfdasfadsfasf</td>
+						<td th:text="|${equipment.equipmentPrice}원|">19000원</td>
 					</tr>
 				</tbody>
 			</table>
 		</article>
+		<span th:text="${product.id}" class="d-none"></span>
 		<hr>
 		<div class="d-flex justify-content-end">
-			<span class="mr-5">총가격: 19000원</span>
+			<span id="product_price">19000</span>
+			<!-- <span th:if="${club != null}" class="mr-5" th:text="|${club.clubPrice}원|">총가격: 19000원</span>
+			<span th:if="${equipment != null}" class="mr-5 product_price" th:text="$|{equipment.equipmentPrice}원|">총가격: 19000원</span> -->
 		</div>
 		<hr>
 		
 		<div class="d-flex my-2">
 			<span class="col-3 text-center">이름</span>
-			<input type="text" id="name" name="name" class="form-control col-6" placeholder="이름을 입력하세요">
+			<input type="text" id="name" name="name" class="form-control col-6" placeholder="이름을 입력하세요" th:value="${user.name}">
 		</div>
 		<div class="d-flex my-2">
 			<span class="col-3 text-center">주소</span>
-			<input type="text" id="adress" name="adress" class="form-control col-6" placeholder="주소를 입력하세요">
+			<input type="text" id="address" name="adress" class="form-control col-6" placeholder="주소를 입력하세요" th:value="${user.address}">
 		</div>
 		<div class="d-flex">
 			<span class="col-3 text-center">전화 번호</span>
-			<input type="text" id="phoneNumber" name="phoneNumber" class="form-control col-6" placeholder="전화번호를 입력하세요">
+			<input type="text" id="phoneNumber" name="phoneNumber" class="form-control col-6" placeholder="전화번호를 입력하세요" th:value="${user.phoneNumber}">
 		</div>
 		<article class="mt-5 ml-5">
-			<div class="d-flex ml-5 my-5">
+			<div id="paymentMethod" class="d-flex ml-5 my-5">
 				<button type="button" class="no_card btn btn-info mt-5">무통장 입금</button>
 				<button type="button" class="btn btn-info ml-5 mt-5 has_card">카드 결제</button>
 			</div>
@@ -66,7 +74,7 @@
 			</div>
 			
 			<div class="d-flex justify-content-end mt-5 pr-5">
-				<button id="payment_btn" type="button" class="btn btn-primary mr-5 d-none">결제 하기</button>
+				<button id="payment_btn" type="button" class="btn btn-primary mr-5 d-none" th:data-product-id="${product.id}">결제 하기</button>
 			</div>
 		</article>
 	</div>
@@ -79,12 +87,16 @@
 			$(".no_card").on('click', function(){
 				$("#no_card").removeClass("d-none");
 				$("#has_card").addClass("d-none");
+				$("#payment_btn").addClass("no_card");
+				$("#payment_btn").removeClass("has_card");
 			});
 			
 			$(".has_card").on('click', function(){
 				$("#no_card").addClass("d-none");
 				$("#has_card").removeClass("d-none");
 				$("#payment_btn").removeClass("d-none");
+				$("#payment_btn").addClass("has_card");
+				$("#payment_btn").removeClass("no_card");
 			});
 			
 			
@@ -105,7 +117,48 @@
 					$(".giup").removeClass("d-none");
 					$("#payment_btn").removeClass("d-none");
 				}
+				
 			});
+
+			$("#payment_btn").on('click',function(){
+				let name = $("#name").val().trim();
+				let address = $("#address").val().trim();
+				let phoneNumber = $("#phoneNumber").val().trim();
+				let productId = $(this).data("product-id");
+				let product_price = $("#product_price").val().trim();
+				let paymentMethod = $("#payment_btn").attr('class');
+				
+				if(paymentMethod.includes("no_card") == true){
+					paymentMethod = "no_card";
+					// console.log("no_card");
+				} else{
+					paymentMethod = "has_card";
+					// console.log("has_card");
+				}
+				
+				console.log(paymentMethod);
+				console.log(product_price);
+				
+				$.ajax({
+					method:"post"
+					,url:"/product/order-insert"
+					,data:{"orderName": name, "orderAddress":address , "orderPhoneNumber": phoneNumber, "productId": productId , "paymentMethod":paymentMethod}
+					,success:function(data){
+						if(data.code == 200){
+							alert("주문이 완료되었습니다.")
+							location.href="/product/done-view?id="+data.orderId;
+						} else {
+							alert("잘못 입력햇습니다.");
+						}
+					}
+					,error:function(e){
+						alert("에러 발생")
+					}
+					
+				});
+				
+			});
+			
 			
 		});
     </script>
