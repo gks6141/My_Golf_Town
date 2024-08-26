@@ -4,8 +4,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/defaultLayout}">
 <section layout:fragment="content" class="contents d-flex justify-content-center">
-	<article>
-		<table class="table text-center">
+	<article class="w-75">
+		<table class="table text-start">
 			<tr class="col">
 				<th scope="col">받으시는 분</th>
 				<td th:text="${order.orderName}">111</td>
@@ -19,8 +19,9 @@
 				<td th:text="${order.orderPhoneNumber}"></td>
 			</tr>
 		</table>
-		
-		<table class="table text-center">
+		<br>
+		<br>
+		<table class="table text-start">
 			<tr class="col">
 				<th scope="col">상품명</th>
 				<td th:text="${product.productSubject}"></td>
@@ -34,8 +35,11 @@
 				<td th:text="${order.paymentMethod}"></td>
 			</tr>
 		</table>
-		
-		<button type="button" class="btn btn-primary">sss</button>
+		<br>
+		<br>
+		<div class="d-flex justify-content-center">
+			<button type="button" class="btn btn-primary" onclick="location.href='/golf/main-view'">메인 페이지</button>
+		</div>
 	</article>
 </section>
 

@@ -35,16 +35,16 @@ public class ProductListBO {
 		for(Product product : products) {
 			ProductList oneProduct = new ProductList();
 
-			//해당 clubId 의 사진이랑 가격을 가져와야해
-			GolfClub club = golfClubBO.getGolfClubByIdUsedClubClubType(product.getClubId(), usedClub, clubType);
-			if(club == null) {
+			if(product.getClubId() == null){
 				continue;
 			} else {
-				oneProduct.setProduct(product);
-				
-				oneProduct.setGolfClub(club);
-				
-				productList.add(oneProduct);
+			//해당 clubId 의 사진이랑 가격을 가져와야해
+			GolfClub club = golfClubBO.getGolfClubByIdUsedClubClubType(product.getClubId(), usedClub, clubType);
+			oneProduct.setProduct(product);
+			
+			oneProduct.setGolfClub(club);
+			
+			productList.add(oneProduct);
 			}
 		}
 		

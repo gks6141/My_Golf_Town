@@ -2,6 +2,7 @@ package com.MyGolfTown.product;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Options;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,7 +63,6 @@ public class productController {
 		model.addAttribute("product", product);
 		return "product/productView";
 	}
-	
 	
 	@GetMapping("/order-view")
 	public String orderView(HttpSession session,

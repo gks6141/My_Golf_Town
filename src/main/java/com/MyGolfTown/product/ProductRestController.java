@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.MyGolfTown.product.bo.OrderBO;
+import com.MyGolfTown.product.domain.Order;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -32,8 +33,10 @@ public class ProductRestController {
 		Map<String, Object> result = new HashMap<>();
 		int userId = (int)session.getAttribute("userId");
 //		int intPrice = Integer.valueOf(price);
-		int orderId=orderBO.insertOrder(userId, productId, orderName, orderAddress, orderPhoneNumber, 190000, paymentMethod);
+		int orderId = orderBO.insertOrder(userId, productId, orderName, orderAddress, orderPhoneNumber, 190000, paymentMethod);
+//		Order order = new Order();
 		
+//		int orderId = order.getId();
 		result.put("code",200);
 		result.put("result","성공");
 		result.put("orderId", orderId);

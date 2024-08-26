@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.MyGolfTown.product.mapper.OrderMapper">
- 	<insert id="insertOrder" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+ 	<insert id="insertOrder" parameterType="com.MyGolfTown.product.domain.Order" useGeneratedKeys="true">
  		INSERT INTO `order`
  		(
  		`userId`

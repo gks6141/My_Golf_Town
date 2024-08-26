@@ -18,6 +18,9 @@
 		
 		<!-- 로그인 영역 -->
 		<div class="w-25 d-flex justify-content-end">
+			<div>
+				<button type="button" class="mx-2 btn btn-info" onclick="location.href='/basket/basket-view'">장바구니</button>
+			</div>
 			<div th:if="${session.userId != null}">
 				<div class="dropdown">
 				  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
